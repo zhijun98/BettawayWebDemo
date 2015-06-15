@@ -31,10 +31,6 @@ import org.primefaces.event.RowEditEvent;
 @ManagedBean(name = "userEditView")
 @ViewScoped
 public class UserEditView {
-    
-    private String targetFirstName;
-    private String targetLastName;
-    private Date targetBirthday;
 
     @EJB(beanName="bettawayUserFacade")
     private BettawayUserFacadeLocal aBettawayUserFacade;
@@ -43,30 +39,6 @@ public class UserEditView {
      * Creates a new instance of UserEditView
      */
     public UserEditView() {
-    }
-
-    public String getTargetFirstName() {
-        return targetFirstName;
-    }
-
-    public void setTargetFirstName(String targetFirstName) {
-        this.targetFirstName = targetFirstName;
-    }
-
-    public String getTargetLastName() {
-        return targetLastName;
-    }
-
-    public void setTargetLastName(String targetLastName) {
-        this.targetLastName = targetLastName;
-    }
-
-    public Date getTargetBirthday() {
-        return targetBirthday;
-    }
-
-    public void setTargetBirthday(Date targetBirthday) {
-        this.targetBirthday = targetBirthday;
     }
     
     public List<BettawayUser> getUserList(){
@@ -115,32 +87,6 @@ public class UserEditView {
         } catch (IOException ex) {
             Logger.getLogger(UserEditView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public String storeTargetUser(){
-        
-        //NOTE-1: the front-end input does the basic validation
-        
-        //NOTE-2: the uniqueness of the web user was not validated due to its demo nature
-        
-        BettawayUser aBettawayUser = new BettawayUser();
-        aBettawayUser.setUuid(UUID.randomUUID().toString());
-        aBettawayUser.setBirthday(targetBirthday);
-        aBettawayUser.setFirstName(targetFirstName);
-        aBettawayUser.setLastName(targetLastName);
-        try{
-            aBettawayUserFacade.create(aBettawayUser);
-        }catch (Exception ex){
-            //NOTE-3: just show the error handling in case that the JPA operations are very complicated
-            //In this demo case, this is not necessary
-            BettaWebUtil.addErrorMessage(ex, ex.getMessage());
-            return null;
-        }
-        return "userList";
-    }
-    
-    public String cancelStoringTargetUser(){
-        return "welcome";
     }
     
 }

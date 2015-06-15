@@ -17,7 +17,7 @@
                         <h:outputText value="First Name: " />
                     </p:column>
                     <p:column>
-                        <p:inputText id= "userFirstName" value="#{userEditView.targetFirstName}" required="true" requiredMessage="This field is required." >
+                        <p:inputText id= "userFirstName" value="#{userProfileBean.targetFirstName}" required="true" requiredMessage="This field is required." >
                             <f:validateLength maximum="100" />
                         </p:inputText>
                     </p:column>
@@ -30,7 +30,7 @@
                         <h:outputText value="Last Name: " />
                     </p:column>
                     <p:column>
-                        <p:inputText id= "userLastName" value="#{userEditView.targetLastName}" required="true" requiredMessage="This field is required." >
+                        <p:inputText id= "userLastName" value="#{userProfileBean.targetLastName}" required="true" requiredMessage="This field is required." >
                             <f:validateLength maximum="100" />
                         </p:inputText>
                     </p:column>
@@ -43,7 +43,7 @@
                         <h:outputText value="Birthday:: " />
                     </p:column>
                     <p:column>
-                        <p:calendar id="userBirthdayPopup" value="#{userEditView.targetBirthday}" required="true" requiredMessage="This field is required." />
+                        <p:calendar id="userBirthdayPopup" value="#{userProfileBean.targetBirthday}" required="true" requiredMessage="This field is required." />
                     </p:column>
                     <p:column>
                         <p:message for="userBirthdayPopup" />
@@ -53,8 +53,8 @@
                     <p:column>
                     </p:column>
                     <p:column colspan="2">
-                        <p:commandButton value="Create" action="#{userEditView.storeTargetUser()}" ajax="false" />
-                        <p:commandButton value="Cancel" action="#{userEditView.cancelStoringTargetUser()}" immediate="true"/>
+                        <p:commandButton value="Create" action="#{userProfileBean.storeTargetUser()}" ajax="false" />
+                        <p:commandButton value="Cancel" action="#{userProfileBean.cancelStoringTargetUser()}" immediate="true"/>
                     </p:column>
                 </p:row>
             </p:panelGrid>
