@@ -1,10 +1,64 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
                 template="./template/bettawayTemplate.xhtml">
 
     <ui:define name="content">
-        Create User
+        <h:form>
+            <p:panelGrid>
+                <f:facet name="header">
+                    Create User
+                </f:facet>
+                <p:row>
+                    <p:column>
+                        <h:outputText value="First Name: " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id= "userFirstName" value="#{userEditView.targetFirstName}" required="true" requiredMessage="This field is required." >
+                            <f:validateLength maximum="100" />
+                        </p:inputText>
+                    </p:column>
+                    <p:column>
+                        <p:message for="userFirstName"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <h:outputText value="Last Name: " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id= "userLastName" value="#{userEditView.targetLastName}" required="true" requiredMessage="This field is required." >
+                            <f:validateLength maximum="100" />
+                        </p:inputText>
+                    </p:column>
+                    <p:column>
+                        <p:message for="userLastName"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <h:outputText value="Birthday:: " />
+                    </p:column>
+                    <p:column>
+                        <p:calendar id="userBirthdayPopup" value="#{userEditView.targetBirthday}" required="true" requiredMessage="This field is required." />
+                    </p:column>
+                    <p:column>
+                        <p:message for="userBirthdayPopup" />
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:commandButton value="Create" action="#{userEditView.storeTargetUser()}" ajax="false" />
+                        <p:commandButton value="Cancel" action="#{userEditView.cancelStoringTargetUser()}" immediate="true"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
     </ui:define>
 
 </ui:composition>

@@ -7,16 +7,18 @@
                 template="./template/bettawayTemplate.xhtml">
 
     <ui:define name="content">
-        <h:form id="userDataForm">
+        
         <p:growl id="msgsGrowl" showDetail="true"/>
+        
+        <h:form id="userDataForm">
 
         <p:dataTable id="userDataTable" var="user" value="#{userEditView.userList}" editable="true" style="margin-bottom:20px">
             <f:facet name="header">
                 Row Editing
             </f:facet>
 
-            <p:ajax event="rowEdit" listener="#{userEditView.onRowEdit}" update=":userDataForm:msgsGrowl" />
-            <p:ajax event="rowEditCancel" listener="#{userEditView.onRowCancel}" update=":userDataForm:msgsGrowl" />
+            <p:ajax event="rowEdit" listener="#{userEditView.onRowEdit}" update=":msgsGrowl" />
+            <p:ajax event="rowEditCancel" listener="#{userEditView.onRowCancel}" update=":msgsGrowl" />
 
             <p:column headerText="Id">
                 <p:cellEditor>
