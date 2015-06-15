@@ -54,7 +54,7 @@ public class UserProfileBean {
         this.targetBirthday = targetBirthday;
     }
     
-    public String storeTargetUser(){
+    public String createTargetUser(){
         
         //NOTE-1: the front-end input does the basic validation
         
@@ -75,7 +75,7 @@ public class UserProfileBean {
         return "userList";
     }
     
-    public String cancelStoringTargetUser(){
+    public String cancelOperatingOnTargetUser(){
         return "welcome";
     }
     
