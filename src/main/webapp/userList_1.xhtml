@@ -8,23 +8,17 @@
 
     <ui:define name="content">
         
-        <h:form id="form">
-        
         <p:growl id="msgsGrowl" showDetail="true"/>
+        
+        <h:form id="userDataForm">
 
- 
-        <p:contextMenu for="userList" widgetVar="cMenu">   
-            <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellUsers').showCellEditor();return false;"/>  
-            <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
-        </p:contextMenu> 
- 
-        <p:dataTable id="userList" var="user" value="#{userEditView.userList}" editable="true" editMode="cell" widgetVar="cellUsers">
+        <p:dataTable id="userDataTable" var="user" value="#{userEditView.userList}" editable="true" style="margin-bottom:20px">
             <f:facet name="header">
-                Cell Editing with Click and RightClick
+                Row Editing
             </f:facet>
- 
-       <p:ajax event="cellEdit" listener="#{userEditView.onCellEditTableComplete}" update=":form:msgsGrowl, userList" />
- 
+
+            <p:ajax event="rowEdit"  listener="#{userEditView.onRowEdit}" update=":msgsGrowl" />
+            <p:ajax event="rowEditCancel" listener="#{userEditView.onRowCancel}" update=":msgsGrowl" />
 
             <p:column headerText="Id">
                 <p:cellEditor>
@@ -36,8 +30,7 @@
             <p:column headerText="First Name">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{user.firstName}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{user.firstName}" valueChangeListener="#{userEditView.onValueQuantityChange}"
-                                                       style="width:100%" label="First Name"/></f:facet>
+                    <f:facet name="input"><p:inputText value="#{user.firstName}" style="width:100%" label="First Name"/></f:facet>
                 </p:cellEditor>
             </p:column>
 
@@ -50,16 +43,17 @@
 
             <p:column headerText="Birthday">
                 <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{user.birthday}" >
-                       <f:convertDateTime pattern="MM-dd-YYYY"/> 
-                        </h:outputText></f:facet>
+                    <f:facet name="output"><h:outputText value="#{user.birthday}" /></f:facet>
                     <f:facet name="input">
-                        <p:calendar id="popup" value="#{user.birthday}" valueChangeListener="#{userEditView.onValueQuantityChange}" />
+                        <p:calendar id="popup" value="#{user.birthday}" />
                     </f:facet>
                 </p:cellEditor>
             </p:column>
-   </p:dataTable>
-        
+
+            <p:column style="width:32px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
         </h:form>
     </ui:define>
 
