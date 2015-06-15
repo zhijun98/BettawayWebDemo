@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
+                <title>Welcome to my demo for Bettaway!</title>
             </f:facet>
         </h:head>
 
@@ -18,28 +18,31 @@
             <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Header
+                    <ui:insert name="top">
+                        <div style="margin: auto; text-align: center; position: absolute; top: 30px">
+                            <h:outputText value="Welcome to my demo for Bettaway!" style="font-size: x-large; font-weight: bold;"/>  
+                        </div>
+                    </ui:insert>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
+                    <ui:insert name="top">Footer</ui:insert>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                <p:layoutUnit position="west" size="175">
+                    <ui:insert name="top">
                     <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
+                        <p:submenu label="Main Menu">
+                            <p:menuitem value="Display User List" outcome="userList" />
+                            <p:menuitem value="Create New User" outcome="createUser" />
                         </p:submenu>
 
                     </p:menu>
+                    </ui:insert>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    Welcome to PrimeFaces
+                    <ui:insert name="content">Content</ui:insert>
                 </p:layoutUnit>
 
             </p:layout>
