@@ -73,19 +73,19 @@ public class UserEditView {
         DataTable dataTable = (DataTable) event.getSource();
         Object objUser = dataTable.getRowData();
         if (objUser instanceof BettawayUser){
-            System.out.println("Great");
-        }
-        
-        BettawayUser aBettawayUser = new BettawayUser();
-        aBettawayUser.setBirthday(new Date());
-        aBettawayUser.setFirstName("TEST_01");
-        aBettawayUser.setLastName("TEST_02");
-        aBettawayUser.setUuid("ID-4678578");
-        aBettawayUserFacade.create(aBettawayUser);
-        try {
-            BettaWebUtil.redirect("userList.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(UserEditView.class.getName()).log(Level.SEVERE, null, ex);
+            BettawayUser aBettawayUser = (BettawayUser)objUser;
+            BettawayUser pBettawayUser = aBettawayUserFacade.find(aBettawayUser.getUuid());
+            if (pBettawayUser == null){
+                BettaWebUtil.addErrorMessage("Cannot find this user record.");
+            }else{
+                //upadte fields here
+                aBettawayUserFacade.edit(pBettawayUser);
+                try {
+                    BettaWebUtil.redirect("userList.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(UserEditView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
     

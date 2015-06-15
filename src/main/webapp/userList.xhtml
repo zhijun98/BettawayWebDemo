@@ -7,58 +7,67 @@
                 template="./template/bettawayTemplate.xhtml">
 
     <ui:define name="content">
-        
         <h:form id="form">
-        
-        <p:growl id="msgsGrowl" showDetail="true"/>
+            <p:growl id="msgsGrowl" showDetail="true"/>
+            <p:contextMenu for="userList" widgetVar="popupMenu">   
+                <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellUsers').showCellEditor();return false;"/>  
+                <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('popupMenu').hide()"/>  
+            </p:contextMenu> 
+            <p:dataTable id="userList" var="user" value="#{userEditView.userList}" editable="true" editMode="cell" widgetVar="cellUsers">
+                <p:ajax event="cellEdit" listener="#{userEditView.onCellEditTableComplete}" update=":form:msgsGrowl, userList" />
+                <p:column headerText="Id">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.uuid}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputHidden id="userUuidInput" value="#{user.uuid}"/>
+                            <h:outputText value="#{user.uuid}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="First Name">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.firstName}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText id="userFirstNameInput" value="#{user.firstName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
+                                         label="First Name" style="width:100%" required="true" requiredMessage="This field is required." 
+                                <f:validateLength maximum="100" />
+                            </p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
- 
-        <p:contextMenu for="userList" widgetVar="cMenu">   
-            <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellUsers').showCellEditor();return false;"/>  
-            <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
-        </p:contextMenu> 
- 
-        <p:dataTable id="userList" var="user" value="#{userEditView.userList}" editable="true" editMode="cell" widgetVar="cellUsers">
-            <f:facet name="header">
-                Cell Editing with Click and RightClick
-            </f:facet>
- 
-       <p:ajax event="cellEdit" listener="#{userEditView.onCellEditTableComplete}" update=":form:msgsGrowl, userList" />
- 
+                <p:column headerText="Last Name">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.lastName}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText id="userLastNameInput" value="#{user.lastName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
+                                         label="Last Name" style="width:100%" required="true" requiredMessage="This field is required." >
+                                <f:validateLength maximum="100" />
+                            </p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
-            <p:column headerText="Id">
-                <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{user.uuid}" /></f:facet>
-                    <f:facet name="input"><p:inputText id="modelInput" value="#{user.uuid}" style="width:100%"/></f:facet>
-                </p:cellEditor>
-            </p:column>
-
-            <p:column headerText="First Name">
-                <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{user.firstName}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{user.firstName}" valueChangeListener="#{userEditView.onValueQuantityChange}"
-                                                       style="width:100%" label="First Name"/></f:facet>
-                </p:cellEditor>
-            </p:column>
-
-            <p:column headerText="Last Name">
-                <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{user.lastName}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{user.lastName}" style="width:100%" label="Last Name"/></f:facet>
-                </p:cellEditor>
-            </p:column>
-
-            <p:column headerText="Birthday">
-                <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{user.birthday}" >
-                       <f:convertDateTime pattern="MM-dd-YYYY"/> 
-                        </h:outputText></f:facet>
-                    <f:facet name="input">
-                        <p:calendar id="popup" value="#{user.birthday}" valueChangeListener="#{userEditView.onValueQuantityChange}" />
-                    </f:facet>
-                </p:cellEditor>
-            </p:column>
-   </p:dataTable>
+                <p:column headerText="Birthday">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.birthday}" >
+                                <f:convertDateTime pattern="MM-dd-YYYY"/> 
+                            </h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:calendar id="userBirthdayInput" value="#{user.birthday}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
+                                        required="true" requiredMessage="This field is required."  />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+            </p:dataTable>
         
         </h:form>
     </ui:define>
