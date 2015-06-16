@@ -7,6 +7,7 @@ package com.bettaway.bettawaywebdemo.util;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -17,6 +18,20 @@ import javax.faces.context.FacesContext;
 public class BettaWebUtil {
     
     private BettaWebUtil(){}
+    
+    /**
+     * This method demands JSF runtime 
+     * @param paramKey - which is located in HTTP-Request header
+     * @return 
+     */
+    public static String getRequestParamValue(String paramKey){
+        Map<String, String> pValues = getFacesContext().getExternalContext().getRequestParameterMap();
+        if (pValues == null){
+            return null;
+        }else{
+            return pValues.get(paramKey);
+        }
+    }
 
     /**
      * Redirect to redirectingUrl which is an absolute URL

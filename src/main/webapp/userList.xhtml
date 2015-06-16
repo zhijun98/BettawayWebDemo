@@ -69,7 +69,15 @@
                 </p:column>
 
                 <p:column>
-                    Delete
+                    <p:commandLink value="Delte" action="#{userEditView.deleteBettawayUser()}">
+                        <f:param name="#{bettawayWebApp.bettawayUserUuidParamName}" value="#{user.uuid}"/>
+                        <p:confirm header="Confirmation" message="Are you sure to delete this user: #{user.firstName} #{user.lastName}?" icon="ui-icon-alert" />
+                    </p:commandLink>
+ 
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
                 </p:column>
             </p:dataTable>
         

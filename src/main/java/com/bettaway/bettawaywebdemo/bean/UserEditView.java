@@ -5,6 +5,7 @@
  */
 package com.bettaway.bettawaywebdemo.bean;
 
+import com.bettaway.bettawaywebdemo.common.BettawayWebParamName;
 import com.bettaway.bettawaywebdemo.common.UserEditViewComID;
 import com.bettaway.bettawaywebdemo.storage.BettawayUserFacadeLocal;
 import com.bettaway.bettawaywebdemo.storage.entity.BettawayUser;
@@ -90,6 +91,22 @@ public class UserEditView {
                 }
             }
         }
+    }
+    
+    public String deleteBettawayUser(){
+        String userUuid = BettaWebUtil.getRequestParamValue(BettawayWebParamName.UserUuid.toString());
+        if (userUuid == null){
+            BettaWebUtil.addErrorMessage("Cannot find this user record.");
+            return null;
+        }
+        BettawayUser pBettawayUser = aBettawayUserFacade.find(userUuid);
+        if (pBettawayUser != null){
+            aBettawayUserFacade.remove(pBettawayUser);
+            BettaWebUtil.addInfoMessage("Successfully delete this user record: " + pBettawayUser.getFirstName() + " "  + pBettawayUser.getLastName() );
+        }else{
+            BettaWebUtil.addWarningMessage("This user record was removed: " + pBettawayUser.getFirstName() + " "  + pBettawayUser.getLastName() );
+        }
+        return null;
     }
     
     /**
