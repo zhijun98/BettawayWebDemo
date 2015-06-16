@@ -9,21 +9,18 @@
     <ui:define name="content">
         <h3 style="margin-top:0">Welcome to my demo for Bettaway!</h3>
         <p:accordionPanel>
-            <p:tab title="MySQL Database">
+            <p:tab title="Database Setup">
                 <h:panelGrid columns="1" cellpadding="10">
-                    <h:outputText value="The story begins as Don Vito Corleone..." />
+                    <h:outputText value="JDBC Connection Pool: mysql_bettawaydemo_pool" />
+                    <h:outputText value="JDBC JDNI: bettawaydemo_jndi" />
+                    <h:outputText value="Settings for the connection pool: please refer to glassfish-resources with your own credentials" />
                 </h:panelGrid>
             </p:tab>
-            <p:tab title="Godfather Part II">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                    <h:outputText value="Francis Ford Coppola's legendary..." />
-                </h:panelGrid>
-            </p:tab>
-            <p:tab title="Godfather Part III">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                    <h:outputText value="After a break of more than 15 years..." />
+            <p:tab title="Source Code">
+                <h:panelGrid columns="1" cellpadding="10">
+                    <h:outputText value="Git: https://github.com/zhijun98/BettawayWebDemo.git" />
+                    <h:outputText value="User: zhijun98" />
+                    <h:outputText value="Password: $bettaway2015" />
                 </h:panelGrid>
             </p:tab>
         </p:accordionPanel>
