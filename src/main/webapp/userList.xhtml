@@ -32,8 +32,8 @@
                             <h:outputText value="#{user.firstName}" />
                         </f:facet>
                         <f:facet name="input">
-                            <p:inputText id="userFirstNameInput" value="#{user.firstName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
-                                         label="First Name" style="width:100%" required="true" requiredMessage="This field is required." 
+                            <p:inputText id="#{userEditView.userFirstNameComID}" value="#{user.firstName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
+                                         label="First Name" style="width:100%" required="true" requiredMessage="This field is required." >
                                 <f:validateLength maximum="100" />
                             </p:inputText>
                         </f:facet>
@@ -46,7 +46,7 @@
                             <h:outputText value="#{user.lastName}" />
                         </f:facet>
                         <f:facet name="input">
-                            <p:inputText id="userLastNameInput" value="#{user.lastName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
+                            <p:inputText id="#{userEditView.userLastNameComID}" value="#{user.lastName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
                                          label="Last Name" style="width:100%" required="true" requiredMessage="This field is required." >
                                 <f:validateLength maximum="100" />
                             </p:inputText>
@@ -62,10 +62,14 @@
                             </h:outputText>
                         </f:facet>
                         <f:facet name="input">
-                            <p:calendar id="userBirthdayInput" value="#{user.birthday}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
+                            <p:calendar id="#{userEditView.userBirthdayNameComID}" value="#{user.birthday}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
                                         required="true" requiredMessage="This field is required."  />
                         </f:facet>
                     </p:cellEditor>
+                </p:column>
+
+                <p:column>
+                    Delete
                 </p:column>
             </p:dataTable>
         
