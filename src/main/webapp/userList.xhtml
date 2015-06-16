@@ -15,23 +15,13 @@
             </p:contextMenu> 
             <p:dataTable id="userList" var="user" value="#{userEditView.userList}" editable="true" editMode="cell" widgetVar="cellUsers">
                 <p:ajax event="cellEdit" listener="#{userEditView.onCellEditTableComplete}" update=":form:msgsGrowl, userList" />
-                <p:column headerText="Id">
+                <p:column headerText="First Name" style="font-size: small">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{user.uuid}" />
+                            <h:outputText value="#{user.firstName}" style="font-size: smaller"/>
                         </f:facet>
                         <f:facet name="input">
-                            <h:inputHidden id="userUuidInput" value="#{user.uuid}"/>
-                            <h:outputText value="#{user.uuid}" />
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
-                <p:column headerText="First Name">
-                    <p:cellEditor>
-                        <f:facet name="output">
-                            <h:outputText value="#{user.firstName}" />
-                        </f:facet>
-                        <f:facet name="input">
+                            <h:inputHidden value="#{user.uuid}"/>
                             <p:inputText id="#{userEditView.userFirstNameComID}" value="#{user.firstName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
                                          label="First Name" style="width:100%" required="true" requiredMessage="This field is required." >
                                 <f:validateLength maximum="100" />
@@ -40,10 +30,10 @@
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Last Name">
+                <p:column headerText="Last Name" style="font-size: small">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{user.lastName}" />
+                            <h:outputText value="#{user.lastName}" style="font-size: smaller"/>
                         </f:facet>
                         <f:facet name="input">
                             <p:inputText id="#{userEditView.userLastNameComID}" value="#{user.lastName}" valueChangeListener="#{userEditView.onValueQuantityChange}" 
@@ -54,10 +44,10 @@
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Birthday">
+                <p:column headerText="Birthday" style="font-size: small">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{user.birthday}" >
+                            <h:outputText value="#{user.birthday}" style="font-size: smaller">
                                 <f:convertDateTime pattern="MM-dd-YYYY"/> 
                             </h:outputText>
                         </f:facet>
@@ -69,7 +59,7 @@
                 </p:column>
 
                 <p:column>
-                    <p:commandLink value="Delte" action="#{userEditView.deleteBettawayUser()}">
+                    <p:commandLink value="Delete" action="#{userEditView.deleteBettawayUser()}" update="userList" style="color: blue">
                         <f:param name="#{bettawayWebApp.bettawayUserUuidParamName}" value="#{user.uuid}"/>
                         <p:confirm header="Confirmation" message="Are you sure to delete this user: #{user.firstName} #{user.lastName}?" icon="ui-icon-alert" />
                     </p:commandLink>

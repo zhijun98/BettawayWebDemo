@@ -106,6 +106,11 @@ public class UserEditView {
         }else{
             BettaWebUtil.addWarningMessage("This user record was removed: " + pBettawayUser.getFirstName() + " "  + pBettawayUser.getLastName() );
         }
+        try {
+            BettaWebUtil.redirect("userList.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(UserEditView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     
