@@ -16,7 +16,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
- * This CDI backing bean works for createUser.xhtml
+ * This CDI backing bean works for createUser.xhtml 
  *
  * @author Zhijun Zhang
  */

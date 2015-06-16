@@ -10,14 +10,20 @@
         <h:form id="form">
             <p:growl id="msgsGrowl" showDetail="true"/>
             <p:contextMenu for="userList" widgetVar="popupMenu">   
-                <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellUsers').showCellEditor();return false;"/>  
-                <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('popupMenu').hide()"/>
+                <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellUsers').showCellEditor();return false;"/> 
             </p:contextMenu> 
             <p:dataTable id="userList" var="user" value="#{userEditView.userList}" editable="true" editMode="cell" widgetVar="cellUsers"
                          rows="10" paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                <f:facet name="header">
+                    <h:outputText value="Bettaway Demo User List" style="font-size: x-large; font-weight: bold"/>
+                </f:facet>
+                <f:facet name="footer">
+                    <h:outputText value="INSTRUCTION: (1) double-click a row for editing values in-place; (2) Right click a row to have a short-cut menu to do editing" 
+                                  style="text-align: left; font-weight: normal"/>
+                </f:facet>
                 <p:ajax event="cellEdit" listener="#{userEditView.onCellEditTableComplete}" update=":form:msgsGrowl, userList" />
-                <p:column headerText="First Name" style="font-size: small">
+                <p:column headerText="First Name" style="font-size: smaller">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{user.firstName}" style="font-size: smaller"/>
@@ -32,7 +38,7 @@
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Last Name" style="font-size: small">
+                <p:column headerText="Last Name" style="font-size: smaller">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{user.lastName}" style="font-size: smaller"/>
@@ -46,7 +52,7 @@
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Birthday" style="font-size: small">
+                <p:column headerText="Birthday" style="font-size: smaller">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{user.birthday}" style="font-size: smaller">

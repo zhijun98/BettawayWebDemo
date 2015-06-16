@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
+ * Utilities for this web site
  *
  * @author Zhijun Zhang
  */

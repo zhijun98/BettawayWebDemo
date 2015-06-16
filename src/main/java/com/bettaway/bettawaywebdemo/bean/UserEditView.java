@@ -25,6 +25,7 @@ import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.CellEditEvent;
 
 /**
+ * For userList.xhtml
  *
  * @author Zhijun Zhang
  */
