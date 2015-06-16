@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
+ * Common settings for the web site
  *
  * @author Zhijun Zhang
  */
