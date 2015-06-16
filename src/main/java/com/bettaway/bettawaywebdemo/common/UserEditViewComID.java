@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This enum value is used to label UIComponents to support relevant logic
  *
  * @author Zhijun Zhang
  */

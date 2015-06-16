@@ -10,24 +10,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This enum value is used as "parameter-key" in the HTTP request query
+ * This enum data contains all the page names in one place
  *
  * @author Zhijun Zhang
  */
-public enum BettawayWebParamName {
-    UserUuid("fsdaghdsaghf757656"),
+public enum BettawayWebPageName {
+    WelcomePage("welcome"),
+    UserListPage("userList"),
+    CreateUserPage("createUser"),
     UNKNOWN("Unknown");
 
     private final String value;
-    BettawayWebParamName(String value){
+    BettawayWebPageName(String value){
         this.value = value;
     }
+    
+    public static String getWebPageName(BettawayWebPageName pageName, boolean withExtension){
+        if (withExtension){
+            return pageName + ".xhtml";
+        }else{
+            return pageName.toString();
+        }
+    }
 
-    public static List<BettawayWebParamName> getBettawayWebParamNameList(boolean includeUnknownValue) {
-        List<BettawayWebParamName> result = new ArrayList<BettawayWebParamName>();
-        BettawayWebParamName[] valueArray = BettawayWebParamName.values();
+    public static List<BettawayWebPageName> getBettawayWebPageNameList(boolean includeUnknownValue) {
+        List<BettawayWebPageName> result = new ArrayList<BettawayWebPageName>();
+        BettawayWebPageName[] valueArray = BettawayWebPageName.values();
         if (valueArray != null){
-            for (BettawayWebParamName valueObj : valueArray){
+            for (BettawayWebPageName valueObj : valueArray){
                 if (includeUnknownValue){
                     result.add(valueObj);
                 }else{
@@ -42,9 +52,9 @@ public enum BettawayWebParamName {
 
     public static List<String> getEnumValueList(boolean includeUnknownValue){
         List<String> result = new ArrayList<String>();
-        BettawayWebParamName[] valueArray = BettawayWebParamName.values();
+        BettawayWebPageName[] valueArray = BettawayWebPageName.values();
         if (valueArray != null){
-            for (BettawayWebParamName valueObj : valueArray){
+            for (BettawayWebPageName valueObj : valueArray){
                 if (includeUnknownValue){
                     result.add(valueObj.toString());
                 }else{
@@ -59,9 +69,9 @@ public enum BettawayWebParamName {
 
     public static List<String> getEnumNameList(boolean includeUnknownName){
         List<String> result = new ArrayList<String>();
-        BettawayWebParamName[] valueArray = BettawayWebParamName.values();
+        BettawayWebPageName[] valueArray = BettawayWebPageName.values();
         if (valueArray != null){
-            for (BettawayWebParamName valueObj : valueArray){
+            for (BettawayWebPageName valueObj : valueArray){
                 if (includeUnknownName){
                     result.add(valueObj.name());
                 }else{
@@ -74,15 +84,15 @@ public enum BettawayWebParamName {
         return result;
     }
 
-    public static BettawayWebParamName convertEnumValueToType(String value){
+    public static BettawayWebPageName convertEnumValueToType(String value){
         return convertEnumValueToType(value, false);
     }
 
-    public static BettawayWebParamName convertEnumValueToType(String value, boolean allowNullReturned){
-        BettawayWebParamName result = null;
+    public static BettawayWebPageName convertEnumValueToType(String value, boolean allowNullReturned){
+        BettawayWebPageName result = null;
         if (value != null){
-            BettawayWebParamName[] valueArray = BettawayWebParamName.values();
-            for (BettawayWebParamName valueObj : valueArray){
+            BettawayWebPageName[] valueArray = BettawayWebPageName.values();
+            for (BettawayWebPageName valueObj : valueArray){
                 if (valueObj.toString().equalsIgnoreCase(value)){
                     result = valueObj;
                     break;
@@ -97,15 +107,15 @@ public enum BettawayWebParamName {
         return result;
     }
 
-    public static BettawayWebParamName convertEnumNameToType(String value){
+    public static BettawayWebPageName convertEnumNameToType(String value){
         return convertEnumNameToType(value, false);
     }
 
-    public static BettawayWebParamName convertEnumNameToType(String name, boolean allowNullReturned){
-        BettawayWebParamName result = null;
+    public static BettawayWebPageName convertEnumNameToType(String name, boolean allowNullReturned){
+        BettawayWebPageName result = null;
         if (name != null){
-            BettawayWebParamName[] valueArray = BettawayWebParamName.values();
-            for (BettawayWebParamName valueObj : valueArray){
+            BettawayWebPageName[] valueArray = BettawayWebPageName.values();
+            for (BettawayWebPageName valueObj : valueArray){
                 if (valueObj.name().equalsIgnoreCase(name)){
                     result = valueObj;
                     break;
