@@ -5,8 +5,8 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="bettawaydemo"/>
-        <property name="User" value="zhijun98"/>
-        <property name="Password" value="$baruch98"/>
+        <property name="User" value="YOUR_NAME"/>
+        <property name="Password" value="YOUR_PASSWORD"/>
         <property name="URL" value="jdbc:mysql://localhost:3306/bettawaydemo?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
