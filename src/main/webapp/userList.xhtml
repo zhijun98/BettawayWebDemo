@@ -13,7 +13,10 @@
                 <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellUsers').showCellEditor();return false;"/>  
                 <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('popupMenu').hide()"/>  
             </p:contextMenu> 
-            <p:dataTable id="userList" var="user" value="#{userEditView.userList}" editable="true" editMode="cell" widgetVar="cellUsers">
+            <p:dataTable id="userList" var="user" value="#{userEditView.userList}" editable="true" editMode="cell" widgetVar="cellUsers"
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                 <p:ajax event="cellEdit" listener="#{userEditView.onCellEditTableComplete}" update=":form:msgsGrowl, userList" />
                 <p:column headerText="First Name" style="font-size: small">
                     <p:cellEditor>
