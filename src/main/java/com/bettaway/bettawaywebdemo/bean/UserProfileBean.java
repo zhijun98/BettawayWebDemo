@@ -5,6 +5,7 @@
  */
 package com.bettaway.bettawaywebdemo.bean;
 
+import com.bettaway.bettawaywebdemo.common.BettawayWebPageName;
 import com.bettaway.bettawaywebdemo.storage.BettawayUserFacadeLocal;
 import com.bettaway.bettawaywebdemo.storage.entity.BettawayUser;
 import com.bettaway.bettawaywebdemo.util.BettaWebUtil;
@@ -55,11 +56,10 @@ public class UserProfileBean {
     }
     
     public String createTargetUser(){
-        
-        //NOTE-1: the front-end input does the basic validation
-        
-        //NOTE-2: the "uniqueness" of the web user was not validated due to its demo nature
-        
+        if (!validateInput()){
+            return null;
+        }
+        //NOTE-2: the "uniqueness" of the web user record was not checked here due to its demo nature
         BettawayUser aBettawayUser = new BettawayUser();
         aBettawayUser.setUuid(UUID.randomUUID().toString());
         aBettawayUser.setBirthday(targetBirthday);
@@ -72,11 +72,17 @@ public class UserProfileBean {
             BettaWebUtil.addErrorMessage(ex, ex.getMessage());
             return null;
         }
-        return "userList";
+        return BettawayWebPageName.getWebPageName(BettawayWebPageName.UserListPage, false);
     }
     
     public String cancelOperatingOnTargetUser(){
-        return "welcome";
+        return BettawayWebPageName.getWebPageName(BettawayWebPageName.UserListPage, false);
+    }
+
+    private boolean validateInput() {
+        //NOTE-1: the front-end input does the basic validation
+        //BettaWebUtil.addErrorMessage("Please check your input which was not valide.");
+        return true;
     }
     
 }

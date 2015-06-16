@@ -22,10 +22,12 @@ public class BettawayWebApp {
      */
     public BettawayWebApp() {
     }
-    
+  
+    /**
+     * A common parameter-key for the HTTP query string
+     * @return 
+     */
     public String getBettawayUserUuidParamName(){
         return BettawayWebParamName.UserUuid.toString();
-
-
     }
 }
