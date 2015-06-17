@@ -14,6 +14,8 @@ import java.util.UUID;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * This CDI backing bean works for createUser.xhtml 
@@ -23,37 +25,15 @@ import javax.inject.Named;
 @Named(value = "userProfileBean")
 @RequestScoped
 public class UserProfileBean {
-    
+    @Getter @Setter
     private String targetFirstName;
+    @Getter @Setter
     private String targetLastName;
+    @Getter @Setter
     private Date targetBirthday;
 
     @EJB(beanName="bettawayUserFacade")
     private BettawayUserFacadeLocal aBettawayUserFacade;
-
-    public String getTargetFirstName() {
-        return targetFirstName;
-    }
-
-    public void setTargetFirstName(String targetFirstName) {
-        this.targetFirstName = targetFirstName;
-    }
-
-    public String getTargetLastName() {
-        return targetLastName;
-    }
-
-    public void setTargetLastName(String targetLastName) {
-        this.targetLastName = targetLastName;
-    }
-
-    public Date getTargetBirthday() {
-        return targetBirthday;
-    }
-
-    public void setTargetBirthday(Date targetBirthday) {
-        this.targetBirthday = targetBirthday;
-    }
     
     public String createTargetUser(){
         if (!validateInput()){
@@ -84,5 +64,4 @@ public class UserProfileBean {
         //BettaWebUtil.addErrorMessage("Please check your input which was not valide.");
         return true;
     }
-    
 }
