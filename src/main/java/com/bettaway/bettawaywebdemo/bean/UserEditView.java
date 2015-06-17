@@ -115,6 +115,7 @@ public class UserEditView {
                         BettaWebUtil.redirect(BettawayWebPageName.getWebPageName(BettawayWebPageName.UserListPage, true));
                     } catch (IOException ex) {
                         Logger.getLogger(UserEditView.class.getName()).log(Level.SEVERE, null, ex);
+                        BettaWebUtil.addErrorMessage("Cannot complete this operation right now. Please try it later.");
                     }
                 }
             }//if-objUser
@@ -142,7 +143,9 @@ public class UserEditView {
             //redirect to this view so that this view can be refreshed (this bean used @ViewScope for editing in-place)
             BettaWebUtil.redirect(BettawayWebPageName.getWebPageName(BettawayWebPageName.UserListPage, true));
         } catch (IOException ex) {
+            //Use Glassfish server's logging to record it
             Logger.getLogger(UserEditView.class.getName()).log(Level.SEVERE, null, ex);
+            BettaWebUtil.addErrorMessage("Cannot complete this operation right now. Please try it later");
         }
         return null;
     }
@@ -167,6 +170,7 @@ public class UserEditView {
          */
         void updateUserRecord(BettawayUser aBettawayUser){
             if (aBettawayUser == null){
+                //return quietly
                 return;
             }
             switch (comID){
