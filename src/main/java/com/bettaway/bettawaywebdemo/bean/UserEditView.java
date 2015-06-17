@@ -87,6 +87,7 @@ public class UserEditView {
      */
     public void onCellEditTableComplete(CellEditEvent event) {
         if (aUserRecordChange == null){
+            //quietly return.
             return;
         }
         Object objTable = event.getSource();
@@ -97,8 +98,11 @@ public class UserEditView {
                 BettawayUser aBettawayUser = (BettawayUser)objUser;
                 BettawayUser pBettawayUser = aBettawayUserFacade.find(aBettawayUser.getUuid());
                 if (pBettawayUser == null){
-                    //it should rarely happen
-                    BettaWebUtil.addErrorMessage("[TECH] Cannot find this user record.");
+                    //it should rarely happen. if it happened for any reason, just 
+                    //show friendly message to the front end and avoid infrastructure 
+                    //crashed. But use a logger to log it into Glassfish system
+                    Logger.getLogger(UserEditView.class.getName()).log(Level.SEVERE, null, new Exception("This should never be happened. Check it out and fix it."));
+                    BettaWebUtil.addErrorMessage("Cannot find this user record.");
                 }else{
                     //update the changed field for the user entity
                     aUserRecordChange.updateUserRecord(pBettawayUser);
