@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This enum value is used to label UIComponents to support relevant logic
+ * This enum value is used to label UIComponents to support relevant logic 
+ * in the code. In this way, avoid hard-coding it in both of JSF page and Java code.
  *
  * @author Zhijun Zhang
  */

@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
- *
+ * This class makes it possible for more easily implementing other controllers 
  * @author Zhijun Zhang
  * @param <T>
  */

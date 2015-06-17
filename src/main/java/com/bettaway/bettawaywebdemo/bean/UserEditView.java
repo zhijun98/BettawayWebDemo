@@ -34,7 +34,7 @@ import org.primefaces.event.CellEditEvent;
 public class UserEditView {
     
     /**
-     * Hold the current change from the user's front-end
+     * Hold the current cell value change from the users
      */
     private UserRecordChange aUserRecordChange;
     
@@ -59,10 +59,18 @@ public class UserEditView {
         return UserEditViewComID.UserBirthdayComID.toString();
     }
     
+    /**
+     * Get the latest user list every time the view is constructed 
+     * @return 
+     */
     public List<BettawayUser> getUserList(){
         return aBettawayUserFacade.findAll();
     }
     
+    /**
+     * When user change the cell value on the JSF page, this method is invoked
+     * @param event 
+     */
     public void onValueObjectChange(ValueChangeEvent event) {
         Object objComponent = event.getSource();
         if (objComponent instanceof UIComponent){
@@ -73,6 +81,10 @@ public class UserEditView {
         }
     }
     
+    /**
+     * After user stop editing and move to others, this method is invoked.
+     * @param event 
+     */
     public void onCellEditTableComplete(CellEditEvent event) {
         if (aUserRecordChange == null){
             return;
@@ -86,7 +98,7 @@ public class UserEditView {
                 BettawayUser pBettawayUser = aBettawayUserFacade.find(aBettawayUser.getUuid());
                 if (pBettawayUser == null){
                     //it should rarely happen
-                    BettaWebUtil.addErrorMessage("Cannot find this user record.");
+                    BettaWebUtil.addErrorMessage("[TECH] Cannot find this user record.");
                 }else{
                     //update the changed field for the user entity
                     aUserRecordChange.updateUserRecord(pBettawayUser);
@@ -105,6 +117,10 @@ public class UserEditView {
         }//if-objTable
     }
     
+    /**
+     * serve for DELETE request from users
+     * @return 
+     */
     public String deleteBettawayUser(){
         String userUuid = BettaWebUtil.getRequestParamValue(BettawayWebParamName.UserUuid.toString());
         if (userUuid == null){
@@ -132,7 +148,7 @@ public class UserEditView {
      */
     private class UserRecordChange{
         private final UserEditViewComID comID;
-        private final Object oldValue;
+        private final Object oldValue;  //reserved for the future more complicated logic
         private final Object newValue;
 
         UserRecordChange(UserEditViewComID comID, Object oldValue, Object newValue) {

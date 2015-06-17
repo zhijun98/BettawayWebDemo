@@ -10,7 +10,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * Front-end JSF page use this to inject the corresponding instances
  * @author Zhijun Zhang
  */
 @Local

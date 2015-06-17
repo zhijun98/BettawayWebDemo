@@ -18,7 +18,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * This CDI backing bean works for createUser.xhtml 
+ * This CDI backing bean works for createUser.xhtml.
+ * 
+ * This class shows how to use Project-Lombok tags for accessors. 
+ * 
+ * Note: only use Lombok 1.14.X or before; Lombok 1.16.X or later does not work 
+ * in Netbeans (https://code.google.com/p/projectlombok/issues/detail?id=785)
  *
  * @author Zhijun Zhang
  */
@@ -39,7 +44,9 @@ public class UserProfileBean {
         if (!validateInput()){
             return null;
         }
-        //NOTE-2: the "uniqueness" of the web user record was not checked here due to its demo nature
+        //NOTE-2: the web user record should be unique. Before a new user record 
+        //is created, it should be checked if it had been there in the storage. 
+        //Here it is skipped for simplicity due to demo purpose
         BettawayUser aBettawayUser = new BettawayUser();
         aBettawayUser.setUuid(UUID.randomUUID().toString());
         aBettawayUser.setBirthday(targetBirthday);
@@ -47,8 +54,8 @@ public class UserProfileBean {
         aBettawayUser.setLastName(targetLastName);
         try{
             aBettawayUserFacade.create(aBettawayUser);
-        }catch (Exception ex){
-            //NOTE-3: just show the error handling in case that the JPA operations are very complicated. (In this specific demo case, this is not necessary)
+        }catch (Exception ex){ //NOTE-3: Just show the error handling in case that the JPA operations are very complicated. 
+                               //In this specific demo case, this is not necessary
             BettaWebUtil.addErrorMessage(ex, ex.getMessage());
             return null;
         }
@@ -61,7 +68,7 @@ public class UserProfileBean {
 
     private boolean validateInput() {
         //NOTE-1: the front-end input does the basic validation
-        //BettaWebUtil.addErrorMessage("Please check your input which was not valide.");
+        //todo: implement some complicated run-time validation if necessary in practice
         return true;
     }
 }

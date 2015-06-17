@@ -10,7 +10,7 @@ import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
- * Common settings for the web site
+ * Initial settings set up if necessary and common settings for the web site
  *
  * @author Zhijun Zhang
  */
@@ -23,9 +23,14 @@ public class BettawayWebApp {
      */
     public BettawayWebApp() {
     }
+    
+    //todo: @PostConstruct
+    //todo: @PreDestroy
   
     /**
-     * A common parameter-key for the HTTP query string
+     * A common parameter-key for the HTTP query string. Its purpose is to 
+     * "hide" the meaningful text from the query string for better security and 
+     * also standardize the query parameter keys in the system range.
      * @return 
      */
     public String getBettawayUserUuidParamName(){
